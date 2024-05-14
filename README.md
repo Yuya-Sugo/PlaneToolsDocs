@@ -25,7 +25,7 @@ Since the first version of PT, the code has always been available upon request t
 Each MATLAB file in the code base will have it's own documentation file that describes and layouts the variables (meaning, units, type), what the code is doing, and any additional background information that may be required. To gain an overview of how the entire code structure works, see the below section. Each indent indicates a layer down, where it's parent is the first time said MATLAB file is called. 
 
 ## Overview of the Code Structure
-
-- `TradeStudy.m` Defines design space, runs trade study, calculates scores, and identifies best plane
-    - `definePlane.m` Creates a plane struct that holds basically all of the information related to the plane
+> You can click on the file name to jump into the details of that MATLAB file!
+- [`TradeStudy.m`](./TradeStudy.md) Defines design space, runs trade study, calculates scores, and identifies best plane
+    - [`definePlane.m`](./definePlane.md) Creates a plane struct that holds basically all of the information related to the plane
     - `defineEnvironment.m` Creates an environment struct that defines the conditions the plane is flying at (mainly used for headwind studies)
