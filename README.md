@@ -28,4 +28,8 @@ Each MATLAB file in the code base will have it's own documentation file that des
 > You can click on the file name to jump into the details of that MATLAB file!
 - [`TradeStudy.m`](./TradeStudy.md) Defines design space, runs trade study, calculates scores, and identifies best plane
     - [`definePlane.m`](./definePlane.md) Creates a plane struct that holds basically all of the information related to the plane
-    - `defineEnvironment.m` Creates an environment struct that defines the conditions the plane is flying at (mainly used for headwind studies)
+    - [`defineEnvironment.m`](./defineEnvironment.md) Creates an environment struct that defines the conditions the plane is flying at (mainly used for headwind studies)
+
+
+## Quick Reference to Useful Pages
+- [Plane Struct Variables](./definePlane.md)

@@ -41,3 +41,10 @@ This adds the paths to the physics model, mass build-up functions, component lib
 plane = definePlane();
 ```
 This calls the `definePlane` function to create a temporary, arbitrary plane struct with initial values. See [definePlane.md](./definePlane.md) for more information about the plane struct. 
+
+```MATLAB
+%% Define Environment
+environment = defineEnvironment("Whittier");
+```
+This calls `defineEnvironment` to define conditions, namely desnisty and wind information (direction, speed, and headwind component on takeoff) 
+

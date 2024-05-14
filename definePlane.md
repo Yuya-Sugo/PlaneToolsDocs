@@ -18,7 +18,7 @@ All defined element in the plane struct is shown in the tables below, categorize
 | `m2results` | Mission 2 Performance Results | Struct | TOFL, VTO, Vstall, nLaps, missionTime, *performance*, score, etc | Populated by SimulateComp in TradeStudy.m |
 | `m3results` | Mission 3 Performance Results | Struct | TOFL, VTO, Vstall, nLaps, missionTime, *performance*, score, etc | Populated by SimulateComp in TradeStudy.m |
 
-Note: *performance* stores time-based information of: `Vstall`, `t`, `V`, `s`, `CL`, `loadFactor`, `Pinduced`, `Pparasite`, `Vb`, `propspeed`, `N`, `J`, `CT`, `thrust`, `Cp`, `Pshaft`, `proptorque`, `I`, `Pelectric`, `cRate`, `Paircraft`, `VbUnderLoad`, `etaMotor`, `etaProp`, `eta`, `throttle`, `r`, `Ve`
+Note: *performance* stores time-based information of: `Vstall`, `t`, `V`, `s`, `CL`, `loadFactor`, `Pinduced`, `Pparasite`, `Vb`, `propspeed`, `N`, `J`, `CT`, `thrust`, `Cp`, `Pshaft`, `proptorque`, `I`, `Pelectric`, `cRate`, `Paircraft`, `VbUnderLoad`, `etaMotor`, `etaProp`, `eta`, `throttle`, `r`, `Ve`, and boolan `stall`
 
 ### Wing
 | Wing |---|---|---|---|
@@ -162,3 +162,80 @@ Note: *performance* stores time-based information of: `Vstall`, `t`, `V`, `s`, `
 | `DApayload3` | Drag Added of Mission 3 Paylaods | Double |  |  |
 | `mPayloadExtras3` | Untradeable, fixed Mission 3 Mass | Double |  |  |
 | `Vmax3` | Max Speed Mission 3 | Double |  |  |
+
+
+## Code Breakdown
+Mostly straight forward...
+
+
+```MATLAB
+plane.motorType = 'Scorpion_A_4220_540';
+% plane.motorType = 'Scorpion_HKIII_5025_520KV_F3S';
+warning('off')
+load('motor.mat', plane.motorType);
+motor = eval(plane.motorType);
+plane.Kv = motor.Kv;
+plane.motorMaxPower = motor.maxPower;
+Rmotor = motor.R;
+plane.motorLength = motor.length;
+plane.motorDiam = motor.diam;
+plane.nMotors = 2;
+% plane.nMotors = 1;
+plane.ESCMaxCurrent = 260;
+plane.ESCContinuousCurrent = 110;
+Resc = .0005;
+Rwire = .01;
+```
+
+
+
+
+```MATLAB
+diameter = 12; %12x6, 12x8
+pitch = 8;
+% diameter = 14;
+% pitch = 8;
+propellerMAT = matfile('myFile2.mat');
+allProps = propellerMAT.allProps;
+diamIndices = find(allProps(:,1)==diameter);
+pitchIndices = find(allProps(:,2)==pitch);
+[index,~]=intersect(diamIndices,pitchIndices);
+plane.D2 = diameter*0.0254;
+plane.P2 = pitch;
+plane.A2 = allProps(index,3);
+plane.B2 = allProps(index,4);
+plane.C2 = allProps(index,5);
+plane.E2 = allProps(index,6);
+plane.F2 = allProps(index,7);
+plane.G2 = allProps(index,8);
+```
+This section of the code reads in `myFile2.mat` stored in the component library folder, and stores all the prop information available to PT in `allProps` 2D array with columns: `diameter`, `pitch`, `A`, `B`, `C`, `E`, `F`, `G`. Them it finds the row with the right diameter and pitch, and stores the propeller coefficients for specific missions.
+The `find` function returns a 1D array of zeros and ones to see where the diameter or pitch match the one we are looking for. The `intersect` of these 2 arrays is the row we are looking for. 
+
+```MATLAB
+% Battery
+plane.batteryType3 = 'MA_2250_8s'; 
+load('battery.mat', plane.batteryType3);
+battery3 = eval(plane.batteryType3);
+```
+This section loads battery information just based off the battery name from the `battery.mat` database stored in the component library. This provides battery information in a struct  containing `capacity` (capacity per cell, rather than whole battery, **in units of Ah**) `R` `Imax` `mass` `nSeries`
+
+
+```MATLAB
+plane.bat3maxCurrent = battery3.Imax;
+plane.bat3R = battery3.R;
+
+% Total energy
+plane.nSeries3 = battery3.nSeries;
+plane.nParallel3 = 1;
+plane.bat3capacity = battery3.capacity*plane.nParallel3;
+plane.Eb3 = plane.bat3capacity*plane.nSeries3*3.7*3600;
+
+% Total resistance
+plane.Rt3 = Resc + Rwire + Rmotor + (plane.bat3R/plane.nParallel3);
+```
+With the values from the database, information relating to the whole battery was calcualted: 
+
+- Battery Capacity: capacity per cell $ \times $ # parallel
+- Battery Energy: battery capacity $ \times $ # series $ \times $ 3.7 V (I think this is nominal voltage for a LiPo battery) $ \times $ 3600 (hours to second conversion)
+- Battery Resistance: battery resistance / # parallel
