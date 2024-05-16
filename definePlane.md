@@ -236,6 +236,6 @@ plane.Rt3 = Resc + Rwire + Rmotor + (plane.bat3R/plane.nParallel3);
 ```
 With the values from the database, information relating to the whole battery was calcualted: 
 
-- Battery Capacity: capacity per cell $ \times $ # parallel
+- Battery Capacity: capacity per cell $` \times `$ # parallel
 - Battery Energy: battery capacity $ \times $ # series $ \times $ 3.7 V (I think this is nominal voltage for a LiPo battery) $ \times $ 3600 (hours to second conversion)
 - Battery Resistance: battery resistance / # parallel
