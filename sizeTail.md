@@ -22,10 +22,10 @@ This is a function, taking in a `plane` struct and returning a `plane` struct th
 
 We can define a dimensionless coefficient called the Volume Coefficient for the horizontal and vertical tail to help us describe the tail. 
 The horizontal tail volume coefficient is defined by:
-$$ V_{HT} = \frac{l_{HT}\ S_{HT}}{c_{MAC}\ S_{wing}}$$
+$$` V_{HT} = \frac{l_{HT}\ S_{HT}}{c_{MAC}\ S_{wing}}`$$
 
 The vertical tail volume coefficient is defined by:
-$$ V_{VT} = \frac{l_{VT}\ S_{VT}}{b\ S_{wing}}$$
+$$ `V_{VT} = \frac{l_{VT}\ S_{VT}}{b\ S_{wing}}`$$
 
 The figure below graphically defines all of the variables used to define the tail planform for a conventional tail configuration. 
 

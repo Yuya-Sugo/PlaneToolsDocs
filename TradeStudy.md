@@ -220,10 +220,10 @@ We now being to iterate through all of the combinations of the design space. It 
     
 ```
 Now it updates the `plane` struct with the current values of the variables being traded, along with updating some of the `plane` elements. 
-$$ c  = \frac{b}{AR} $$
-$$ S_{ref} = b\ c$$
-$$ c_{root} =  \frac{2\ c}{1 + \lambda}$$
-$$ c_{tip} = \lambda\ c_{root}  $$
+$$` c  = \frac{b}{AR} `$$
+$$` S_{ref} = b\ c `$$
+$$ `c_{root} =  \frac{2\ c}{1 + \lambda} `$$
+$$` c_{tip} = \lambda\ c_{root}  `$$
 
 
 
