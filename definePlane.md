@@ -1,6 +1,28 @@
 # `definePlane.m`
 > Yuya Sugo, Performance Lead 2024-2025, USC AeroDesign Team </br> 5/14/2024
 
+
+<!--ts-->
+* [definePlane.m](#defineplanem)
+   * [Main Purpose](#main-purpose)
+   * [Variables](#variables)
+      * [General](#general)
+      * [Wing](#wing)
+      * [Winglets](#winglets)
+      * [Fuselage](#fuselage)
+      * [Tail](#tail)
+      * [Propulsion](#propulsion)
+      * [Landing Gear](#landing-gear)
+      * [Mission 2](#mission-2)
+      * [Mission 3](#mission-3)
+   * [Code Breakdown](#code-breakdown)
+   * [Add/Edit/Remove Component Library .mat Files](#addeditremove-component-library-mat-files)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: yuyasugo, at: Fri May 17 19:40:54 JST 2024 -->
+
+<!--te-->
+
 ## Main Purpose
 This function defines all variables that are related to a plane. This is expected to change as the trade study redefines aircraft parameters. You are going to have to update the derived parameter, after changing the independent parameters. It is **not** automatic, as in entering a new `AR`
  will not automatically update the `b` and `c` values.
@@ -187,7 +209,7 @@ Resc = .0005;
 Rwire = .01;
 ```
 
-
+This section pulls information about the motor from the `motor.mat` database stored in the component library. The `Resc` and `Rwire` are fixed estimates as of now. `motor.mat` stores the `Kv`, resistance, mass, and max power of each motor in a struct named with its motor name as defined in `plane.motorType`.
 
 
 ```MATLAB
@@ -237,5 +259,9 @@ plane.Rt3 = Resc + Rwire + Rmotor + (plane.bat3R/plane.nParallel3);
 With the values from the database, information relating to the whole battery was calcualted: 
 
 - Battery Capacity: capacity per cell $` \times `$ # parallel
-- Battery Energy: battery capacity $ \times $ # series $ \times $ 3.7 V (I think this is nominal voltage for a LiPo battery) $ \times $ 3600 (hours to second conversion)
-- Battery Resistance: battery resistance / # parallel
+- Battery Energy: battery capacity $` \times `$ # series $` \times `$ 3.7 V (I think this is nominal voltage for a LiPo battery) $` \times `$ 3600 (hours to second conversion)
+- Battery Resistance: battery resistance $`/`$ # parallel
+
+## Add/Edit/Remove Component Library `.mat` Files
+
+In the Component Library, there are Matlab scrips with the names `add____.m`. Editing those, and running them will allow for the new components to be added to the `.mat` files and `definePlane` to use them. 

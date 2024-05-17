@@ -1,6 +1,16 @@
 # `defineEnvironment.m`
 > Yuya Sugo, Performance Lead 2024-2025, USC AeroDesign Team </br> 5/14/2024
 
+<!--ts-->
+* [defineEnvironment.m](#defineenvironmentm)
+   * [Main Purpose](#main-purpose)
+   * [Code Breakdown](#code-breakdown)
+
+<!-- Created by https://github.com/ekalinin/github-markdown-toc -->
+<!-- Added by: yuyasugo, at: Fri May 17 19:40:53 JST 2024 -->
+
+<!--te-->
+
 ## Main Purpose
 This function returns an `environement` struct that stores information about the conditions the plane is flying at. This is mainly used for headwind studies.
 
