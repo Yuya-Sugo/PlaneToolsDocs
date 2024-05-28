@@ -9,7 +9,7 @@
       * [Trade Study](#trade-study)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: yuyasugo, at: Fri May 17 19:40:52 JST 2024 -->
+<!-- Added by: yuyasugo, at: Wed May 29 00:49:44 JST 2024 -->
 
 <!--te-->
 
@@ -108,14 +108,10 @@ combined = cat(2, ...
 
 It look me a long long time to understand what this was doing, but here's my attempt at it (if it doesn't make sense, there's an example after this that should simplify it).
 
-`ndgrid` creates a gird of data in N-dimensions, based on the number of input arrays. This is used in combination with the next 2 steps to create all possible combinations. In a simplified case, think of a function of 2 variables, $`f(x, y)`$. If you create an array for $`x`$ and $`y`$, you can't really plot it unless you create all possible combinations of $`(x, y)`$ within the bounds of the 2 arrays. Then you can input this grid into $`f(X, Y)`$ with capital letters denoting grids instead of 1D arrays. 
-
-
-`reshape` as the name suggests, reshapes the grid created by `ndgrid`. The way used by the code snipped above is it reshapes the multi-dimensional grid into one large column vector. Per the Matlab doc page, `reshape(A, n1, n2)` returns array `A` reshaped into a `n1-by-n2` dimension array. For us, we want to create a 1D, column vector so `n2=1`, and `n1=[]` since we don't care at this point how many rows it has. 
-
-`cat` is short for concatenate, and it is used like `cat(dim, A1, A2, A3...)` . `dim` refers to the dimension the arrays should be added along, so in the case of `dim = 2` it means along the columns so sideways. 
-
-With the 3 functions, it basically creates a `combined` 2D array with the columns being `[AR, cabinetMass, nPassengers, windSpeed, AR_index, cabinetMass_index, nPassengers_index, windSpeed_index]`
+- `ndgrid` creates a gird of data in N-dimensions, based on the number of input arrays. This is used in combination with the next 2 steps to create all possible combinations. In a simplified case, think of a function of 2 variables, $`f(x, y)`$. If you create an array for $`x`$ and $`y`$, you can't really plot it unless you create all possible combinations of $`(x, y)`$ within the bounds of the 2 arrays. Then you can input this grid into $`f(X, Y)`$ with capital letters denoting grids instead of 1D arrays. 
+- `reshape` as the name suggests, reshapes the grid created by `ndgrid`. The way used by the code snipped above is it reshapes the multi-dimensional grid into one large column vector. Per the Matlab doc page, `reshape(A, n1, n2)` returns array `A` reshaped into a `n1-by-n2` dimension array. For us, we want to create a 1D, column vector so `n2=1`, and `n1=[]` since we don't care at this point how many rows it has. 
+- `cat` is short for concatenate, and it is used like `cat(dim, A1, A2, A3...)` . `dim` refers to the dimension the arrays should be added along, so in the case of `dim = 2` it means along the columns so sideways. 
+- With the 3 functions, it basically creates a `combined` 2D array with the columns being `[AR, cabinetMass, nPassengers, windSpeed, AR_index, cabinetMass_index, nPassengers_index, windSpeed_index]`
 
 Here's an example of what PT is doing to create one long list of all possible combinations in a (hopefully) simpler example. 
 

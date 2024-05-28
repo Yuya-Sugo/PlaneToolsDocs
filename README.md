@@ -13,7 +13,7 @@
    * [Quick Reference to Useful Pages](#quick-reference-to-useful-pages)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: yuyasugo, at: Fri May 17 19:40:52 JST 2024 -->
+<!-- Added by: yuyasugo, at: Wed May 29 00:49:44 JST 2024 -->
 
 <!--te-->
 
@@ -37,7 +37,7 @@ Since the first version of PT, the code has always been available upon request t
 
 ## Organization of Documentation
 
-Each MATLAB file in the code base will have it's own documentation file that describes and layouts the variables (meaning, units, type), what the code is doing, and any additional background information that may be required. To gain an overview of how the entire code structure works, see the below section. Each indent indicates a layer down, where it's parent is the first time said MATLAB file is called. 
+Each MATLAB file in the code base will have it's own documentation file that describes and layouts the variables (meaning, units, type), what the code is doing, and any additional background information that may be required. To gain an overview of how the entire code structure works, see the below section. Each indent indicates a layer down, where it's parent is the first time the MATLAB file is called. 
 
 ## Overview of the Code Structure
 > You can click on the file name to jump into the details of that MATLAB file!
@@ -46,7 +46,11 @@ Each MATLAB file in the code base will have it's own documentation file that des
     - [`defineEnvironment.m`](./defineEnvironment.md) Creates an environment struct that defines the conditions the plane is flying at (mainly used for headwind studies)
     - [`sizeTail.m`](./sizeTail.md) Updates the tail parameters in the plane struct, and returns updated plane struct. 
     - [`SimulateCompetition.m`](./SimulateCompetition.md) Simulates the plane flying at competition.
+        - [`massBuildup.m`](./massBuildup.md) Estimates the mass of aircraft
+            - [`calcMass_BuiltupWing.m`](./calcMass_BuiltupWing.md) Estimates the mass of builtup wing
+            - [`calcMass_FoamcoreWing.m`](./calcMass_FoamcoreWing.md) Estimates the mass of Foamcore wing (seems depreciated, no documentation created.)
+            - [`calcMass_Fuselage.m`](./calcMass_Fuselage.md) Estimates the mass of the fuselage
 
 ## Quick Reference to Useful Pages
 - [Plane Struct Variables](./definePlane.md)
-- 
+

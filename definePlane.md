@@ -19,7 +19,7 @@
    * [Add/Edit/Remove Component Library .mat Files](#addeditremove-component-library-mat-files)
 
 <!-- Created by https://github.com/ekalinin/github-markdown-toc -->
-<!-- Added by: yuyasugo, at: Fri May 17 19:40:54 JST 2024 -->
+<!-- Added by: yuyasugo, at: Wed May 29 00:49:46 JST 2024 -->
 
 <!--te-->
 
@@ -55,6 +55,7 @@ Note: *performance* stores time-based information of: `Vstall`, `t`, `V`, `s`, `
 | `croot` | Root Chord | Double |  |  |
 | `ctip` | Tip Chord | Double |  |  |
 | `airfoilCoordinatesFile` | Airofoil Coordinates File | Char Array |  |  |
+| `airfoilPerimeter` | Airofoil Perimeter | Double |  | Found duing calcMass_BuiltupWing |
 | `CLmax` | 2D/3D? Coefficient of Lift | Double |  |  |
 | `wingThickness` | Dimensional Wing Thickness | Double |  |  |
 | `wingThicknessLocation` | Max Wing Thickness Location | Double |  |  |
