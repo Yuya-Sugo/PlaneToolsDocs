@@ -20,7 +20,7 @@ This is a function that takes in a `plane` struct and returns the mass of the fu
 
 Historically, ADT's fuselages have looked very different in terms of build methods and material choice to the shape of the fuselage. For example:
 
-- 2023-24: Builtup Truss Fuselage with Solite Skin+ Tail boom
+- 2023-24: Builtup Truss Fuselage with Solite Skin+ Tail boom (there has been some work to estimate this, will be updated in future revisions)
 - 2022-23: CF Monocoque Fuselage + Tail boom
 - 2021-22: Semi-monocoque, foamcore/composite skin
 - 2020-21: CF backbone with plywood formers and Kevlar skin
@@ -102,4 +102,4 @@ This fuselage had a platform that held the tail boom, so the mass estimate for t
 ```MATLAB
 massFuselage = sum([m_CF m_wetTape m_FG m_epoxy_skin m_platform]);
 ```
-Finally, adding up all of the masses
+Finally, adding up all of the masses.

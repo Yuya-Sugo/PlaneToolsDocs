@@ -60,12 +60,12 @@ Note: *performance* stores time-based information of: `Vstall`, `t`, `V`, `s`, `
 | `wingThickness` | Dimensional Wing Thickness | Double |  |  |
 | `wingThicknessLocation` | Max Wing Thickness Location | Double |  |  |
 | `CLgroundRoll` | 2D/3D? Coefficient of Lift at Ground Roll | Double |  |  |
-| `hWing` | Wing's Height above Gronud | Double |  |  |
+| `hWing` | Wing's Height above Ground | Double | Used in LG mass estimate and ground effect drag est. |  |
 | `nStruct` | Max Structural Load Factor | Double | Used in CheckLimits.m |  |
 | `webMaterial` | Wing Web Material | Char Array | Used in MassBuildup/sparSizerGM.m |  |
 | `wingBuildMethod` | Wing Build Method | Char Array | Used in MassBuildup/massBuildup.m |  |
 | `controlSurfMat` | Wing Control Surface Material | Char Array | Used in MassBuildup/calcMass_BuiltupWing.m |  |
-| `wingMat` | Wing Surface Materail | Char Array | Used in PhysicsModels/dragBuildup.m | From material.mat (includes density and surface roughness) |
+| `wingMat` | Wing Surface Material | Char Array | Used in PhysicsModels/dragBuildup.m | From material.mat (includes density and surface roughness) |
 
 ### Winglets
 | Winglets |---|---|---|---|
@@ -78,7 +78,7 @@ Note: *performance* stores time-based information of: `Vstall`, `t`, `V`, `s`, `
 ### Fuselage
 | Fuselage |---|---|---|---|
 |---|---|---|---|---|
-| `lFuse` | Length of Fusealge | Double |  |  |
+| `lFuse` | Length of Fuselage | Double |  |  |
 | `wFuse` | Width of Fuselage | Double |  |  |
 | `hFuse` | Height of Fuselage | Double |  |  |
 | `fuseMat` | Fuselage Material | Char Array | Used for drag and mass buildup |  |
@@ -128,7 +128,7 @@ Note: *performance* stores time-based information of: `Vstall`, `t`, `V`, `s`, `
 | Landing   Gear |---|---|---|---|
 |---|---|---|---|---|
 | `lgType` | Landing Gear Type | Char Array | Drag and Mass buildup |  |
-| `lgMat` | Landing Gear Material | Char Array | Mass buidup |  |
+| `lgMat` | Landing Gear Material | Char Array | Mass buildup |  |
 | `rr` | Rolling Resistance | Double | Prop/Flight Model |  |
 
 ### Mission 2

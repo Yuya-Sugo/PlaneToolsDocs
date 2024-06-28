@@ -17,7 +17,7 @@
 
 This function builds up the mass of the aircraft for any given mission (2nd positional argument)
 
-Since this is a function, taking in a `plane` struct and a `mission` integer and returning structs `massResults`, `plane`
+This is a function taking in a `plane` struct and a `mission` integer and returning structs `massResults`, `plane`
 
 ## Background Knowledge
 
@@ -63,7 +63,7 @@ Mass estimate of the wing for either buildup [`calcMass_BuiltupWing.m`](./calcMa
     mFuse = calcMass_Fuselage(plane);
     plane.mFuse = mFuse;
 ```
-Mass estimate of the fuselage [`calcMass_Fuselage.m`](./calcMass_Fuselage.md)
+Mass estimate of the fuselage, calling function [`calcMass_Fuselage.m`](./calcMass_Fuselage.md). This is only for a CF monocoque fuselage!
 
 ```MATLAB
 %     % Tail
@@ -82,3 +82,45 @@ Mass estimate of the fuselage [`calcMass_Fuselage.m`](./calcMass_Fuselage.md)
     plane.mTail = mTail;
     % V Tail (Built-up)
 ```
+This either calls [`calcMass_FoamcoreTail.m`](./calcMass_FoamcoreTail.md) or assumes constant thickness of both the horizontal and vertical stabilizer and creates a solid-blasa tail. 
+
+```MATLAB
+    % Landing gear 
+    lgType = plane.lgType;
+    hWing = plane.hWing;
+    
+    if strcmp(lgType, 'strut')
+        Alg = (hWing^3)*(.15^2);
+    end
+    
+    if strcmp(lgType, 'bow')
+        Alg = hWing*0.2*3.5;
+    end
+    
+    load('material.mat', plane.lgMat);
+    lgMaterial = eval(plane.lgMat);
+    daLg = lgMaterial.density;
+    
+    mLg = daLg*Alg;
+    plane.mLg = mLg;
+```
+This is a very high level estimate of the mass of the landing gear. Based on the landing gear type from `plane.lgType` and the height of the wing above ground `plane.hWing` it estimates the area (`Alg`) of the landing gear and multiples it with the area density of the landing gear material `lgMat`. 
+
+```MATLAB
+    % Motor
+    load('motor.mat', plane.motorType);
+    motor = eval(plane.motorType);
+    mMotor = motor.m;
+    nMotors = plane.nMotors;
+    plane.mMotor = mMotor*nMotors;
+```
+
+Just reading in the values. See [`definePlane.m`](./definePlane.md) for details on how this is done and how to edit these values. 
+
+
+```MATLAB
+    % Motor Mount
+    mMotorMount = calcMass_MotorMount(plane);
+    plane.mMotorMount = mMotorMount;
+```
+Estimates the mass of the motor mounts in [`calcMass_MotorMount.m`](./definePlane.md)

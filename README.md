@@ -21,15 +21,17 @@
 
 The purpose of this series of documentation is to lay out the detailed explanation of the entire code in chunks, and allows for new users who are interested to get a overview of what is happening behind that yields these results. 
 
+This is meant to be viewed on GitHub Desktop -- all of the formatting shuold work on the desktop version. Equations may not render properly on mobile versions of Github. 
+
 ## What is PlaneTools?
 
-PlaneTools is an in-house MATLAB code that simulates the performance of theoretical planes using physics models in a time-based environment. Based on the predicted "best plane" that the scores are going to be normalized against, PT finds the ADT plane that can score the highest! The overall flow of PT can be seen in this beautiful flow chart made by Jude Sorkin (Perf. Lead 2023-24) but we'll delve deeper into each file later on!
+PlaneTools (PT) is an in-house MATLAB code that simulates the performance of theoretical planes using physics models in a time-based environment. Based on the predicted "best plane" that the scores are going to be normalized against, PT finds the ADT plane that can score the highest! The overall flow of PT can be seen in this beautiful flow chart made by Jude Sorkin (Perf. Lead 2023-24) but we'll delve deeper into each file later on!
 
 ![PTFlowChartJude](./Figures/PlaneTools%20Flowchart.jpeg)
 
 ## Current Version
 
-This version is based off Jude Sorkin's (Performance Lead 2023-24) final commit to the `devel` brach made on 05/12/24.
+This version of *PlaneToolsDocs* is based off Jude Sorkin's (Performance Lead 2023-24) final commit to the `devel` brach made on 05/12/24.
 
 ## GitHub
 
@@ -50,6 +52,8 @@ Each MATLAB file in the code base will have it's own documentation file that des
             - [`calcMass_BuiltupWing.m`](./calcMass_BuiltupWing.md) Estimates the mass of builtup wing
             - [`calcMass_FoamcoreWing.m`](./calcMass_FoamcoreWing.md) Estimates the mass of Foamcore wing (seems depreciated, no documentation created.)
             - [`calcMass_Fuselage.m`](./calcMass_Fuselage.md) Estimates the mass of the fuselage
+            - [`calcMass_FoamcoreTail.m`](./ca  lcMass_FoamcoreTail.md) Estimates the mass of a foam-core tail
+            - [`calcMass_MotorMount.m`](./calcMass_MotorMount.md) Estimates the mass of motor mount(s)
 
 ## Quick Reference to Useful Pages
 - [Plane Struct Variables](./definePlane.md)
